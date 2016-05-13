@@ -1,0 +1,23 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:amq="http://activemq.apache.org/schema/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+  http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd
+  http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+	<!-- 定义了一个Broker，就是一个ActiveMQ的实例 -->
+	<broker xmlns="http://activemq.apache.org/schema/core" useJmx="false">
+
+		<!--定义了activemq对数据的存储方式，即使用KahaDB进行存储，并指定了存储目录 -->
+		<persistenceFactory>
+			<journalPersistenceAdapterFactory
+				journalLogFiles="5" dataDirectory="../data" />
+		</persistenceFactory>
+
+		<!--定义了一个传输连接器，应用程序可以使用指定地址和端口与ActiveMQ进行链接，收发消息，这里使用的是TCP连接 -->
+		<transportConnectors>
+			<transportConnector uri="tcp://localhost:61616" />
+		</transportConnectors>
+
+	</broker>
+
+</beans>
