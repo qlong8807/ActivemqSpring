@@ -23,8 +23,8 @@
 	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
 		<!-- 这个connectionFactory对应的是我们定义的Spring提供的那个ConnectionFactory对象 -->
 		<property name="connectionFactory" ref="connectionFactory" />
-		<!-- pub/sub模型（发布/订阅） 定义当前jmsTemplate是Queue还是Topic类型，true是Topic类型-->
-        <property name="pubSubDomain" value="true" />
+		<!-- pub/sub模型（发布/订阅） 定义当前jmsTemplate是Queue还是Topic类型，true是Topic类型 -->
+		<property name="pubSubDomain" value="true" />
 	</bean>
 	<!--这个是队列目的地，点对点的 -->
 	<bean id="queueDestination" class="org.apache.activemq.command.ActiveMQQueue">

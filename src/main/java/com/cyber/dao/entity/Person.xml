@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE sqlMap  PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="person" type="com.cyber.dao.entity.Person" />
+
+	<resultMap id="person2" class="person">
+		<result column="id" property="id" jdbcType="INT" />
+		<result column="tname" property="name" jdbcType="VARCHAR" />
+		<result column="tsex" property="sex" jdbcType="VARCHAR" />
+	</resultMap>
+	<insert id="insertPerson" parameterClass="person">  
+       <![CDATA[ 
+           insert into person values (#id#,#name#,#sex#) 
+       ]]>
+	</insert>
+
+	<delete id="deleteById" parameterClass="int">  
+        <![CDATA[ 
+           delete from person where id=#id# 
+        ]]>
+	</delete>
+
+	<update id="updatePerson" parameterClass="person">  
+         <![CDATA[ 
+               update person set name=#name#,sex=#sex# where id=#id# 
+         ]]>
+	</update>
+
+	<select id="queryById" parameterClass="int" resultMap="person2">  
+         <![CDATA[ 
+              select * from person2 where id=#id# 
+         ]]>
+	</select>
+
+	<select id="queryAllPerson" cacheModel="personCache"
+		resultClass="person">  
+         <![CDATA[ 
+               select * from person 
+         ]]>
+	</select>
+</sqlMap>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cyber.mybatis.MyBatisPersonDao">
+	<select id="getPerson" parameterType="com.cyber.dao.entity.Person"
+		resultType="com.cyber.dao.entity.Person">
+		SELECT * FROM person WHERE name=#{name} AND sex=#{sex}
+	</select>
+	<insert id="addPerson" parameterType="com.cyber.dao.entity.Person"
+		flushCache="true">
+		INSERT INTO person (id,name,sex) VALUES (#{id},#{name},#{sex})
+	</insert>
+	<update id="updatePerson" parameterType="com.cyber.dao.entity.Person">
+		UPDATE person SET name=#{name} WHERE id=#{id}
+	</update>
+	<delete id="deletePerson" parameterType="int">
+		DELETE FROM person WHERE id=#{id}
+	</delete>
+</mapper>
